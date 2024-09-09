@@ -16,7 +16,7 @@ Importante: Armar el modelo UML representado las clases necesarias. Implementar 
 con TreeMap<Long, Cliente> y TreeSet. Recuerde el uso de: Iterator y keySet()
 En el main, crear un Directorio, entre 4 y 5 Contactos, y probar todos los métodos entre A y E.
  */
-package tp5dirtelefonico;
+package Clases;
 
 /**
  *

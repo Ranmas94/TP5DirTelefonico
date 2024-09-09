@@ -2,7 +2,7 @@
  toString funcion de la calse object que heredan todas las clases de java, no recuerdo si lo vimos en la materia,
 si no lo vimos lo modifico al mnetodo
  */
-package tp5dirtelefonico;
+package Clases;
 
 /**
  *

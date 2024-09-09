@@ -2,7 +2,7 @@
 Memo: TreeMaps es una coleccion de pares clave y valor.
 .put añade entradas deml Map o las actualiza/sobreescribe
  */
-package tp5dirtelefonico;
+package Clases;
 
 import java.util.ArrayList;
 import java.util.Map;
