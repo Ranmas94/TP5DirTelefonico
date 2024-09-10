@@ -77,6 +77,11 @@ public static Directorio directorio = new Directorio();
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("por apellido...");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("por ciudad...");
@@ -117,6 +122,15 @@ public static Directorio directorio = new Directorio();
        escritorio.add(v);
        escritorio.moveToFront(v);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+   escritorio.removeAll();
+       escritorio.repaint();
+       BuscarporApellido v = new BuscarporApellido();
+       v.setVisible(rootPaneCheckingEnabled);
+       escritorio.add(v);
+       escritorio.moveToFront(v);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
