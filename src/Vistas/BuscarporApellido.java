@@ -44,14 +44,20 @@ private DefaultTableModel modelo = new DefaultTableModel(){
         tabla = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("INGRESE UN APELLIDO :");
 
+        tfApellidoBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        tfApellidoBuscar.setForeground(new java.awt.Color(0, 0, 0));
         tfApellidoBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfApellidoBuscarKeyReleased(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Números asociados:");
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
