@@ -6,6 +6,7 @@ package Vistas;
 
 import Clases.Contacto;
 import static Vistas.Menu.directorio;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -116,9 +117,9 @@ public class AgregarContacto extends javax.swing.JInternalFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/8799475.jpg"))); // NOI18N
         jLabel8.setText("jLabel8");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, -24, 380, 290));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 280));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, -3, 390, 270));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, -3, 410, 280));
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +127,7 @@ public class AgregarContacto extends javax.swing.JInternalFrame {
                 jbSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 270, -1, -1));
+        getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 60, 30));
 
         jbNuevo.setText("Nuevo");
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +135,7 @@ public class AgregarContacto extends javax.swing.JInternalFrame {
                 jbNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(jbNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 270, -1, -1));
+        getContentPane().add(jbNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, -1, 30));
 
         jbGuardar.setText("Guardar");
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -142,21 +143,30 @@ public class AgregarContacto extends javax.swing.JInternalFrame {
                 jbGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 270, -1, -1));
+        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
        //Agregar controles
-        String dni = tfDNI.getText();
+       if(tfDNI.getText().isEmpty() || tfNombre.getText().isEmpty() || tfApellido.getText().isEmpty() || tfCiudad.getText().isEmpty() || tfDireccion.getText().isEmpty() || tfTelefono.getText().isEmpty()){
+           JOptionPane.showMessageDialog(this, "Debe llenar todos los campos.");
+           return;
+       }
+       try{
+        int dni = Integer.parseInt(tfDNI.getText());
        String nombre = tfNombre.getText();
        String apellido = tfApellido.getText();
        String direccion = tfDireccion.getText();
        String ciudad = tfCiudad.getText();
        Long tel = Long.valueOf(tfTelefono.getText());
-       Contacto c = new Contacto(dni,nombre,apellido,direccion,ciudad);
+       
+       Contacto c = new Contacto(dni,nombre,apellido,ciudad,direccion);
        directorio.agregarContacto(tel, c);
+       }catch(NumberFormatException nf){
+           JOptionPane.showMessageDialog(this, "Debe ingresar números enteros.");
+       }
 
     }//GEN-LAST:event_jbGuardarActionPerformed
 

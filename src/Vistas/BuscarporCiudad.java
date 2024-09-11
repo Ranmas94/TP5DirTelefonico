@@ -4,26 +4,27 @@
  */
 package Vistas;
 
+import Clases.Contacto;
 import static Vistas.Menu.directorio;
-import java.util.Set;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Lourdes
  */
-public class BuscarporApellido extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo = new DefaultTableModel(){
+public class BuscarporCiudad extends javax.swing.JInternalFrame {
+private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo para poder modificar la tabla
     @Override
     public boolean isCellEditable(int f, int c){ //Este metodo sirve para evitar que las celdas sean editables
         return false;
     }
 };
-
     /**
-     * Creates new form BuscarporApellido
+     * Creates new form BuscarporCiudad
      */
-    public BuscarporApellido() {
+    public BuscarporCiudad() {
         initComponents();
         armarCabecera();
     }
@@ -38,27 +39,19 @@ private DefaultTableModel modelo = new DefaultTableModel(){
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        tfApellidoBuscar = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        tfCiudadBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("INGRESE UN APELLIDO :");
+        jLabel1.setText("INGRESE EL NOMBRE DE UNA CIUDAD:");
 
-        tfApellidoBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        tfApellidoBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        tfApellidoBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfCiudadBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tfApellidoBuscarKeyReleased(evt);
+                tfCiudadBuscarKeyReleased(evt);
             }
         });
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Números asociados:");
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,6 +73,8 @@ private DefaultTableModel modelo = new DefaultTableModel(){
             }
         });
 
+        jLabel2.setText("Coincidencias:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,50 +82,47 @@ private DefaultTableModel modelo = new DefaultTableModel(){
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfApellidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addContainerGap())))
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfCiudadBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 12, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfApellidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfCiudadBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(17, 17, 17)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        dispose();
-        // TODO add your handling code here:
+dispose();       // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
 
-    private void tfApellidoBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApellidoBuscarKeyReleased
-        borrar();
-      cargarDatos();
-    }//GEN-LAST:event_tfApellidoBuscarKeyReleased
+    private void tfCiudadBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCiudadBuscarKeyReleased
+       borrar();
+       cargarDatos();
+    }//GEN-LAST:event_tfCiudadBuscarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -139,10 +131,13 @@ private DefaultTableModel modelo = new DefaultTableModel(){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbSalir;
     private javax.swing.JTable tabla;
-    private javax.swing.JTextField tfApellidoBuscar;
+    private javax.swing.JTextField tfCiudadBuscar;
     // End of variables declaration//GEN-END:variables
 private void armarCabecera(){
-    modelo.addColumn("Teléfono/s");
+    modelo.addColumn("DNI");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Apellido");
+    modelo.addColumn("Dirección");
     tabla.setModel(modelo);
 }
 private void borrar(){
@@ -150,13 +145,16 @@ private void borrar(){
     for(;f>=0;f--){
         modelo.removeRow(f);
     }
-    
-}
-private void cargarDatos(){
-    Set<Long> dir = directorio.buscarTelefono(tfApellidoBuscar.getText());
-    for (Long aLong : dir) {
-        modelo.addRow(new Object[]{aLong});
-    }
 }
 
+private void cargarDatos(){
+    String ciudad = tfCiudadBuscar.getText();
+    if(!(ciudad.isEmpty())){
+    ArrayList<Contacto> lista = directorio.buscarContactos(ciudad);
+        for (Contacto c : lista) {
+            modelo.addRow(new Object[]{c.getDni(),c.getNombre(),c.getApellido(),c.getDireccion()});
+        }
+    }
 }
+}
+

@@ -37,13 +37,14 @@ public static Directorio directorio = new Directorio();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        BorrarContacto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         escritorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -85,8 +86,13 @@ public static Directorio directorio = new Directorio();
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Borrar contacto");
-        jMenu1.add(jMenuItem2);
+        BorrarContacto.setText("Borrar contacto");
+        BorrarContacto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarContactoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(BorrarContacto);
 
         jMenuBar1.add(jMenu1);
 
@@ -109,6 +115,11 @@ public static Directorio directorio = new Directorio();
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("por ciudad...");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
@@ -127,13 +138,14 @@ public static Directorio directorio = new Directorio();
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
        escritorio.removeAll();
        escritorio.repaint();
        AgregarContacto v = new AgregarContacto();
-       v.setVisible(rootPaneCheckingEnabled);
+       v.setVisible(true);
        escritorio.add(v);
        escritorio.moveToFront(v);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -142,7 +154,7 @@ public static Directorio directorio = new Directorio();
          escritorio.removeAll();
        escritorio.repaint();
        BuscarporTelefono v = new BuscarporTelefono();
-       v.setVisible(rootPaneCheckingEnabled);
+       v.setVisible(true);
        escritorio.add(v);
        escritorio.moveToFront(v);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -151,10 +163,28 @@ public static Directorio directorio = new Directorio();
    escritorio.removeAll();
        escritorio.repaint();
        BuscarporApellido v = new BuscarporApellido();
-       v.setVisible(rootPaneCheckingEnabled);
+       v.setVisible(true);
        escritorio.add(v);
        escritorio.moveToFront(v);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        escritorio.removeAll();
+       escritorio.repaint();
+       BuscarporCiudad v = new BuscarporCiudad();
+       v.setVisible(true);
+       escritorio.add(v);
+       escritorio.moveToFront(v);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void BorrarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarContactoActionPerformed
+         escritorio.removeAll();
+       escritorio.repaint();
+       BorrarContacto v = new BorrarContacto();
+       v.setVisible(true);
+       escritorio.add(v);
+       escritorio.moveToFront(v);
+    }//GEN-LAST:event_BorrarContactoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,6 +222,7 @@ public static Directorio directorio = new Directorio();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem BorrarContacto;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -202,7 +233,6 @@ public static Directorio directorio = new Directorio();
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

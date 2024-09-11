@@ -6,13 +6,15 @@ package Vistas;
 
 import Clases.Contacto;
 import static Vistas.Menu.directorio;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Lourdes
  */
-public class BuscarporTelefono extends javax.swing.JInternalFrame {
+public class BorrarContacto extends javax.swing.JInternalFrame {
 private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo para poder modificar la tabla
     @Override
     public boolean isCellEditable(int f, int c){ //Este metodo sirve para evitar que las celdas sean editables
@@ -20,11 +22,12 @@ private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo 
     }
 };
     /**
-     * Creates new form BuscarporTelefono
+     * Creates new form BorrarContacto
      */
-    public BuscarporTelefono() {
+    public BorrarContacto() {
         initComponents();
         armarCabecera();
+        cargarTodo();
     }
 
     /**
@@ -37,20 +40,14 @@ private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo 
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        tfTelefonoBuscar = new javax.swing.JTextField();
+        tfBorrarContacto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jbBorrar = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("INGRESE UN NÚMERO DE TELÉFONO:");
-
-        tfTelefonoBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tfTelefonoBuscarKeyReleased(evt);
-            }
-        });
+        jLabel1.setText("INGRESE UN NUMERO DE TELÉFONO:");
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,22 +69,35 @@ private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo 
             }
         });
 
+        jLabel2.setText("Directorio:");
+
+        jbBorrar.setText("Borrar");
+        jbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbBorrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfTelefonoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfBorrarContacto)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,41 +106,41 @@ private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo 
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(tfTelefonoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(tfBorrarContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfTelefonoBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTelefonoBuscarKeyReleased
-        borrar(); //borramos el contenido de la tabla cada vez que hacemos una nueva busqueda
-        try{ 
-        Long tel = Long.valueOf(tfTelefonoBuscar.getText());
-        Contacto c = directorio.buscarContacto(tel);
-        if (c != null) { //se podria modificar y ponerlo en el catch
-            modelo.addRow(new Object[]{c.getDni(), c.getNombre(), c.getApellido(), c.getDireccion(), c.getCiudad()}); //añadimos los datos del contacto a una fila
-        }
-        }catch(NumberFormatException e){
-            //Este campo está vacio porque solo se requiere que capture la exception
-        }
-    }//GEN-LAST:event_tfTelefonoBuscarKeyReleased
-
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-dispose();        // TODO add your handling code here:
+     dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
+        borrar();
+        borrarContacto();
+        cargarTodo();
+    
+    }//GEN-LAST:event_jbBorrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbBorrar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JTable tabla;
-    private javax.swing.JTextField tfTelefonoBuscar;
+    private javax.swing.JTextField tfBorrarContacto;
     // End of variables declaration//GEN-END:variables
 private void armarCabecera(){
     modelo.addColumn("DNI");
@@ -138,6 +148,7 @@ private void armarCabecera(){
     modelo.addColumn("Apellido");
     modelo.addColumn("Ciudad");
     modelo.addColumn("Dirección");
+    modelo.addColumn("Teléfono");
     tabla.setModel(modelo);
 }
 private void borrar(){
@@ -145,5 +156,17 @@ private void borrar(){
     for(;f>=0;f--){
         modelo.removeRow(f);
     }
+}
+
+private void cargarTodo(){
+    TreeMap<Long,Contacto> d = directorio.getNumMasContactos();
+    for(Map.Entry<Long,Contacto> entry : d.entrySet()){
+            modelo.addRow(new Object[]{entry.getValue().getDni(),entry.getValue().getNombre(),entry.getValue().getApellido(),entry.getValue().getCiudad(),entry.getValue().getDireccion(),entry.getKey()});
+        }
+}
+
+private void borrarContacto(){
+    Long clave = Long.valueOf(tfBorrarContacto.getText());
+    directorio.borrarContacto(clave);
 }
 }

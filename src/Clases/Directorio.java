@@ -49,6 +49,12 @@ public class Directorio {
         return lista;
     }
 
+    public TreeMap<Long, Contacto> getNumMasContactos() {
+        return numMasContactos;
+    }
+    
+    
+
     public void borrarContacto(Long telefono) {
         numMasContactos.remove(telefono);
     }
