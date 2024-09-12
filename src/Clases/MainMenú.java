@@ -59,7 +59,7 @@ public class MainMenú {
         }
         // Eliminar un contacto
         directorio.borrarContacto(2664009457L);
-        System.out.println("Contacto eliminado");
+        System.out.println("Contacto eliminado 2664009457");
 
         // Buscar el contacto eliminado
         Contacto contactoEliminado = directorio.buscarContacto(2664009457L);
