@@ -8,6 +8,7 @@ import Clases.Contacto;
 import static Vistas.Menu.directorio;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,12 +16,17 @@ import javax.swing.table.DefaultTableModel;
  * @author Lourdes
  */
 public class BorrarContacto extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo para poder modificar la tabla
+    private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo para poder modificar la tabla
     @Override
     public boolean isCellEditable(int f, int c){ //Este metodo sirve para evitar que las celdas sean editables
+      // Deshabilitar la selección de filas, columnas y celdas
+    tabla.setRowSelectionAllowed(false);
+    tabla.setColumnSelectionAllowed(false);
+    tabla.setCellSelectionEnabled(false);
+    
         return false;
     }
-};
+    };
     /**
      * Creates new form BorrarContacto
      */
@@ -39,15 +45,29 @@ private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         tfBorrarContacto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        jbSalir = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jbBorrar = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("INGRESE UN NUMERO DE TELÉFONO:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 12, -1, 20));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Directorio:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 49, -1, -1));
+        jPanel1.add(tfBorrarContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 11, 129, -1));
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,59 +82,44 @@ private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo 
         ));
         jScrollPane1.setViewportView(tabla);
 
-        jbSalir.setText("Salir");
-        jbSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalirActionPerformed(evt);
-            }
-        });
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, 398, 160));
 
-        jLabel2.setText("Directorio:");
-
+        jbBorrar.setBackground(new java.awt.Color(255, 255, 255));
+        jbBorrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbBorrar.setForeground(new java.awt.Color(0, 102, 153));
         jbBorrar.setText("Borrar");
         jbBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBorrarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, 31));
+
+        jbSalir.setBackground(new java.awt.Color(255, 255, 255));
+        jbSalir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbSalir.setForeground(new java.awt.Color(0, 102, 153));
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 69, 31));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/GRIS AZULADO-1000x672.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 320));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbBorrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfBorrarContacto)))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfBorrarContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -136,6 +141,8 @@ private DefaultTableModel modelo = new DefaultTableModel(){ //Creamos un modelo 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBorrar;
     private javax.swing.JButton jbSalir;
@@ -154,7 +161,7 @@ private void armarCabecera(){
 private void borrar(){
     int f = tabla.getRowCount()-1;
     for(;f>=0;f--){
-        modelo.removeRow(f);
+        modelo.removeRow(f); 
     }
 }
 
@@ -165,8 +172,29 @@ private void cargarTodo(){
         }
 }
 
-private void borrarContacto(){
-    Long clave = Long.valueOf(tfBorrarContacto.getText());
-    directorio.borrarContacto(clave);
+//private void borrarContacto(){
+//    Long clave = Long.valueOf(tfBorrarContacto.getText());
+//    directorio.borrarContacto(clave);
+//}
+private void borrarContacto() {
+    try {
+        String claveString = tfBorrarContacto.getText().trim(); // Eliminamos espacios en blanco
+
+        if (!claveString.isEmpty()) {
+            try {
+                long clave = Long.parseLong(claveString);
+                directorio.borrarContacto(clave);
+                JOptionPane.showMessageDialog(this, "Contacto eliminado exitosamente.");
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Debe ingresar un número válido.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el número del contacto a eliminar.");
+        }
+    } catch (Exception e) {
+        // Manejar otras excepciones que puedan surgir
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error al eliminar el contacto. Por favor, intente nuevamente.");
+    }
 }
 }
